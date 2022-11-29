@@ -88,13 +88,44 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
+
+
+
+
+
+
+
+
+
+
 // Function to prompt user for password options
 function getPasswordOptions() {
+
+  var length = prompt("how long you like to have ?");
+if ( length>9 && length<65) {
+  var lowerCase = confirm("yoo like to have lower case letter ?");
+  var upperCase = confirm("yoo like to have upper case too ?");
+  var numeric = confirm("yoo like to have numbers ?");
+  var special = confirm("yoo like to have special character too ?");
+}
+else {
+  alert("yoo - only from 10 to 64, try again");
+}
+
+
+
+
 
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+
+
+
+
+  
 
 }
 
@@ -108,6 +139,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
+  getPasswordOptions();
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
