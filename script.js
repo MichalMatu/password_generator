@@ -138,7 +138,9 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   // need this to reset previous password
-  pass = ""
+  pass = "";
+  // and this to reset password list :)
+  userLists = "";
   // created password variable only with user choichec charakters
   var passList = [];
   if (passOptions[1]) {
@@ -159,6 +161,7 @@ function generatePassword() {
     for (var ele in passList[el]) {
       userLists += passList[el][ele];
     }
+    console.log(userLists);
   }
 
 // pulling out password length in loop for then inside do random pick from userLists variable
