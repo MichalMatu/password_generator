@@ -90,7 +90,7 @@ var upperCasedCharacters = [
 
 
 // create variable for user choiched password options
-var passOptions = [];
+var passOptions= [];
 // merge together array with password types
 var userLists = [];
 // password itself need to br created here to avoid undefined at front of password
@@ -102,25 +102,24 @@ function getPasswordOptions() {
 
 // ask user for password length and store it in variable
   var length = prompt("How long password do you want (from 10 to 64) ?");
-  passOptions.push(length);
+  passOptions[0] = length;
 
 // if password is right length and type, confirm windows start to pop up to get more information
 // about password type user want, then storage answers in var passOptions
   if (length > 9 && length < 65) {
-    var lowerCase = confirm("You like to have lower case letter ?");
-    passOptions.push(lowerCase);
-    var upperCase = confirm("You like to have UPPER case too ?");
-    passOptions.push(upperCase);
-    var numeric = confirm("You like to have numbers (01234...) ?");
-    passOptions.push(numeric);
-    var special = confirm("You like to have special character (@#$%^) ?");
-    passOptions.push(special);
+    
+    passOptions[1] = confirm("You like to have lower case letter ?");
+    passOptions[2] = confirm("You like to have UPPER case too ?");
+    passOptions[3] = confirm("You like to have numbers (01234...) ?");
+    passOptions[4] = confirm("You like to have special character (@#$%^) ?");
 
   }
   // if user type wrong password length alert will pop up
   else {
     alert("Password length only from 10 to 64, refresh page!");
   }
+
+  console.log(passOptions);
 
 // return variable with user choiches
   return passOptions;
@@ -175,21 +174,23 @@ function generatePassword() {
 
 
 
-
-
-
-
-
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
+
+  
+
+
   getPasswordOptions();
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
+
+
+
 }
 
 // Add event listener to generate button
