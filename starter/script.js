@@ -89,50 +89,96 @@ var upperCasedCharacters = [
 ];
 
 
-
-
-
-
-
-
-
-
-
+// create variable for user choiched password options
+var passOptions = [];
+// merge together array with password types
+var userLists = [];
+// password itself need to br created here to avoid undefined at front of password
+var pass = "";
 
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  var length = prompt("how long you like to have ?");
-if ( length>9 && length<65) {
-  var lowerCase = confirm("yoo like to have lower case letter ?");
-  var upperCase = confirm("yoo like to have upper case too ?");
-  var numeric = confirm("yoo like to have numbers ?");
-  var special = confirm("yoo like to have special character too ?");
+
+// ask user for password length and store it in variable
+  var length = prompt("How long password do you want (from 10 to 64) ?");
+  passOptions.push(length);
+
+// if password is right length and type, confirm windows start to pop up to get more information
+// about password type user want, then storage answers in var passOptions
+  if (length > 9 && length < 65) {
+    var lowerCase = confirm("You like to have lower case letter ?");
+    passOptions.push(lowerCase);
+    var upperCase = confirm("You like to have UPPER case too ?");
+    passOptions.push(upperCase);
+    var numeric = confirm("You like to have numbers (01234...) ?");
+    passOptions.push(numeric);
+    var special = confirm("You like to have special character (@#$%^) ?");
+    passOptions.push(special);
+
+  }
+  // if user type wrong password length alert will pop up
+  else {
+    alert("Password length only from 10 to 64, refresh page!");
+  }
+
+// return variable with user choiches
+  return passOptions;
+
 }
-else {
-  alert("yoo - only from 10 to 64, try again");
-}
 
-
-
-
-
-}
 
 // Function for getting a random element from an array
+// just random number generator where I can pass generated number length value
 function getRandom(arr) {
-
-
-
-
-  
-
+  var random = Math.floor(Math.random() * arr);
+  return random;
 }
+
 
 // Function to generate password with user input
 function generatePassword() {
+  // need this to reset previous password
+  pass = ""
+  // created password variable only with user choichec charakters
+  var passList = [];
+  if (passOptions[1]) {
+    passList.push(lowerCasedCharacters);
+  }
+  if (passOptions[2]) {
+    passList.push(upperCasedCharacters);
+  }
+  if (passOptions[3]) {
+    passList.push(numericCharacters);
+  }
+  if (passOptions[4]) {
+    passList.push(specialCharacters);
+  }
+
+// merge arrays with user choiched charakters in to one array
+  for (var el in passList) {
+    for (var ele in passList[el]) {
+      userLists += passList[el][ele];
+    }
+  }
+
+// pulling out password length in loop for then inside do random pick from userLists variable
+  for (var i = 0; i < passOptions[0]; i++) {
+
+    pass += userLists[getRandom(userLists.length)]
+
+  }
+
+  return pass;
 
 }
+
+
+
+
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
