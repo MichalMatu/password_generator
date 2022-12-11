@@ -103,7 +103,7 @@ function getPasswordOptions() {
   // ask user for password length and store it in variable
   var length = prompt("How long password do you want (from 10 to 64) ?");
   // secure from crashing when enter extremly long nr
-  if (length > 65) {
+  if (length > 65 || length < 9) {
     length = 0;
   }
 
