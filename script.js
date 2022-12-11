@@ -186,8 +186,9 @@ function writePassword() {
   getPasswordOptions();
 
   // check if user selected at least one option
+  // added if lengts < 65 to avoid showing alert in case of very long password
 
-  if (passOptions[1] == false && passOptions[2] == false && passOptions[3] == false && passOptions[4] == false) {
+  if (passOptions[1] == false && passOptions[2] == false && passOptions[3] == false && passOptions[4] == false && length < 65) {
     alert('You need to pick up at least one option');
   } else {
 
